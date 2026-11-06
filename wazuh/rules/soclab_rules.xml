@@ -1,0 +1,175 @@
+<!--
+  soclab_rules.xml - Eigene Erkennungsregeln für das SOC-Lab (Wazuh 4.14)
+
+  Ablage auf dem Manager:  /var/ossec/etc/rules/soclab_rules.xml
+  Syntax prüfen:           sudo /var/ossec/bin/wazuh-analysisd -t
+  Einzelne Events testen:  sudo /var/ossec/bin/wazuh-logtest
+  Aktivieren:              sudo systemctl restart wazuh-manager
+
+  ID-Bereich 100100-100199 (eigene Regeln ab 100000, keine Kollision mit Wazuh-Standardregeln).
+  Jede Regel ist einer MITRE-ATT&CK-Technik zugeordnet.
+-->
+
+<group name="soclab,windows,">
+
+  <!-- ===================== Credential Access ===================== -->
+
+  <!-- Brute-Force: viele Fehlanmeldungen auf DASSELBE Konto in kurzer Zeit -->
+  <rule id="100100" level="10" frequency="8" timeframe="120">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <same_field>win.eventdata.targetUserName</same_field>
+    <description>SOCLAB: Brute-Force auf Konto $(win.eventdata.targetUserName) (8+ Fehlanmeldungen in 2 min)</description>
+    <mitre>
+      <id>T1110.001</id>
+    </mitre>
+    <group>authentication_failures,brute_force,</group>
+  </rule>
+
+  <!-- Password Spraying: eine Quelle probiert VIELE verschiedene Konten -->
+  <rule id="100101" level="12" frequency="6" timeframe="300">
+    <if_matched_group>authentication_failed</if_matched_group>
+    <same_field>win.eventdata.ipAddress</same_field>
+    <different_field>win.eventdata.targetUserName</different_field>
+    <description>SOCLAB: Password Spraying von $(win.eventdata.ipAddress) (6+ verschiedene Konten in 5 min)</description>
+    <mitre>
+      <id>T1110.003</id>
+    </mitre>
+    <group>authentication_failures,password_spraying,</group>
+  </rule>
+
+  <!-- Kontosperre (Event 4740) - Folge von Brute-Force oder Spraying -->
+  <rule id="100102" level="8">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4740$</field>
+    <description>SOCLAB: Konto $(win.eventdata.targetUserName) wurde gesperrt</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+    <group>account_lockout,</group>
+  </rule>
+
+  <!-- Kerberoasting: Service-Ticket mit schwacher RC4-Verschlüsselung (0x17) für ein Benutzerkonto -->
+  <rule id="100110" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4769$</field>
+    <field name="win.eventdata.ticketEncryptionType">^0x17$</field>
+    <field name="win.eventdata.serviceName" type="pcre2" negate="yes">(?i)^krbtgt$|\$$</field>
+    <description>SOCLAB: Mögliches Kerberoasting - RC4-Service-Ticket für $(win.eventdata.serviceName) angefordert von $(win.eventdata.targetUserName)</description>
+    <mitre>
+      <id>T1558.003</id>
+    </mitre>
+    <group>kerberoasting,</group>
+  </rule>
+
+  <!-- Bekannte Angriffswerkzeuge in Prozessname oder Kommandozeile (Sysmon Event 1) -->
+  <rule id="100111" level="14">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(mimikatz|sekurlsa|rubeus|kerberoast|invoke-kerberoast|lsadump|procdump.+lsass)</field>
+    <description>SOCLAB: Angriffswerkzeug ausgeführt auf $(win.system.computer): $(win.eventdata.image)</description>
+    <mitre>
+      <id>T1003</id>
+      <id>T1558.003</id>
+    </mitre>
+    <group>attack_tool,</group>
+  </rule>
+
+  <!-- ========================= Execution ========================= -->
+
+  <!-- PowerShell mit Base64-kodiertem Befehl - typische Verschleierung -->
+  <rule id="100120" level="12">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.image" type="pcre2">(?i)\\(powershell|pwsh)\.exe$</field>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)\s-(e|ec|enc|encodedcommand)\s</field>
+    <description>SOCLAB: PowerShell mit kodiertem Befehl auf $(win.system.computer)</description>
+    <mitre>
+      <id>T1059.001</id>
+      <id>T1027</id>
+    </mitre>
+    <group>powershell,obfuscation,</group>
+  </rule>
+
+  <!-- PowerShell lädt Inhalte aus dem Internet (Download-Cradle) -->
+  <rule id="100121" level="10">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(downloadstring|downloadfile|invoke-webrequest|\biwr\b|net\.webclient|start-bitstransfer)</field>
+    <description>SOCLAB: Download per Kommandozeile auf $(win.system.computer)</description>
+    <mitre>
+      <id>T1105</id>
+    </mitre>
+    <group>ingress_tool_transfer,</group>
+  </rule>
+
+  <!-- ===================== Persistence / Privilege ===================== -->
+
+  <!-- Neues Mitglied in einer privilegierten Gruppe -->
+  <rule id="100130" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4728$|^4732$|^4756$</field>
+    <field name="win.eventdata.targetUserName" type="pcre2">(?i)^(Domain Admins|Enterprise Admins|Schema Admins|Administrators)$</field>
+    <description>SOCLAB: Neues Mitglied in privilegierter Gruppe $(win.eventdata.targetUserName) (durch $(win.eventdata.subjectUserName))</description>
+    <mitre>
+      <id>T1098</id>
+    </mitre>
+    <group>privilege_escalation,group_change,</group>
+  </rule>
+
+  <!-- Neues Benutzerkonto angelegt -->
+  <rule id="100131" level="8">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4720$</field>
+    <description>SOCLAB: Neues Benutzerkonto $(win.eventdata.targetUserName) angelegt (durch $(win.eventdata.subjectUserName))</description>
+    <mitre>
+      <id>T1136.002</id>
+    </mitre>
+    <group>account_changed,</group>
+  </rule>
+
+  <!-- Neuer Dienst installiert (System-Log, Event 7045) -->
+  <rule id="100132" level="8">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^7045$</field>
+    <description>SOCLAB: Neuer Dienst installiert auf $(win.system.computer): $(win.eventdata.serviceName)</description>
+    <mitre>
+      <id>T1543.003</id>
+    </mitre>
+    <group>service_creation,</group>
+  </rule>
+
+  <!-- ======================= Defense Evasion ======================= -->
+
+  <!-- Audit-Richtlinie geändert - Angreifer schaltet Protokollierung ab -->
+  <rule id="100140" level="12">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^4719$</field>
+    <description>SOCLAB: Audit-Richtlinie geändert auf $(win.system.computer)</description>
+    <mitre>
+      <id>T1562.002</id>
+    </mitre>
+    <group>audit_policy_change,</group>
+  </rule>
+
+  <!-- Security-Log gelöscht -->
+  <rule id="100141" level="14">
+    <if_group>windows</if_group>
+    <field name="win.system.eventID">^1102$</field>
+    <description>SOCLAB: Security-Ereignisprotokoll gelöscht auf $(win.system.computer)</description>
+    <mitre>
+      <id>T1070.001</id>
+    </mitre>
+    <group>log_clearing,</group>
+  </rule>
+
+  <!-- ========================= Discovery ========================= -->
+
+  <!-- Typische AD-Erkundung per Kommandozeile -->
+  <rule id="100150" level="7">
+    <if_group>sysmon_event1</if_group>
+    <field name="win.eventdata.commandLine" type="pcre2">(?i)(net\s+(group|user)\s+.*\/domain|nltest\s+\/dclist|whoami\s+\/(all|groups|priv)|setspn\s+-(q|t))</field>
+    <description>SOCLAB: AD-Erkundung auf $(win.system.computer): $(win.eventdata.commandLine)</description>
+    <mitre>
+      <id>T1087.002</id>
+    </mitre>
+    <group>discovery,</group>
+  </rule>
+
+</group>

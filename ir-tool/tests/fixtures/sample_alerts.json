@@ -1,0 +1,744 @@
+[
+  {
+    "timestamp": "2026-01-15T09:00:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T09:10:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T09:20:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T09:30:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T09:40:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T09:50:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60106",
+      "level": 3,
+      "description": "Windows logon success",
+      "groups": [
+        "windows",
+        "authentication_success"
+      ],
+      "mitre": {
+        "id": [
+          "T1078"
+        ],
+        "tactic": [
+          "Initial Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "svc.backup",
+          "ipAddress": "-"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:05.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:10.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:15.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:20.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:25.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:30.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:35.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:40.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:45.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "60122",
+      "level": 5,
+      "description": "Logon failure - Unknown user or bad password",
+      "groups": [
+        "windows",
+        "authentication_failed"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:50.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "100100",
+      "level": 10,
+      "description": "SOCLAB: Brute-Force auf Konto anna.huber (8+ Fehlanmeldungen in 2 min)",
+      "groups": [
+        "soclab",
+        "windows",
+        "brute_force"
+      ],
+      "mitre": {
+        "id": [
+          "T1110.001"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:00:55.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "100102",
+      "level": 8,
+      "description": "SOCLAB: Konto anna.huber wurde gesperrt",
+      "groups": [
+        "soclab",
+        "windows",
+        "account_lockout"
+      ],
+      "mitre": {
+        "id": [
+          "T1110"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "anna.huber"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:30:00.000+0000",
+    "agent": {
+      "id": "002",
+      "name": "CLIENT01"
+    },
+    "rule": {
+      "id": "100150",
+      "level": 7,
+      "description": "SOCLAB: AD-Erkundung auf CLIENT01",
+      "groups": [
+        "soclab",
+        "windows",
+        "discovery"
+      ],
+      "mitre": {
+        "id": [
+          "T1087.002"
+        ],
+        "tactic": [
+          "Discovery"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "lukas.gruber"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:31:00.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "100110",
+      "level": 12,
+      "description": "SOCLAB: Mögliches Kerberoasting - RC4-Service-Ticket angefordert",
+      "groups": [
+        "soclab",
+        "windows",
+        "kerberoasting"
+      ],
+      "mitre": {
+        "id": [
+          "T1558.003"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "lukas.gruber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:31:02.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "100110",
+      "level": 12,
+      "description": "SOCLAB: Mögliches Kerberoasting - RC4-Service-Ticket angefordert",
+      "groups": [
+        "soclab",
+        "windows",
+        "kerberoasting"
+      ],
+      "mitre": {
+        "id": [
+          "T1558.003"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "lukas.gruber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T10:31:04.000+0000",
+    "agent": {
+      "id": "001",
+      "name": "DC01"
+    },
+    "rule": {
+      "id": "100110",
+      "level": 12,
+      "description": "SOCLAB: Mögliches Kerberoasting - RC4-Service-Ticket angefordert",
+      "groups": [
+        "soclab",
+        "windows",
+        "kerberoasting"
+      ],
+      "mitre": {
+        "id": [
+          "T1558.003"
+        ],
+        "tactic": [
+          "Credential Access"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "lukas.gruber",
+          "ipAddress": "10.10.10.100"
+        }
+      }
+    }
+  },
+  {
+    "timestamp": "2026-01-15T11:00:00.000+0000",
+    "agent": {
+      "id": "002",
+      "name": "CLIENT01"
+    },
+    "rule": {
+      "id": "100120",
+      "level": 12,
+      "description": "SOCLAB: PowerShell mit kodiertem Befehl auf CLIENT01",
+      "groups": [
+        "soclab",
+        "windows",
+        "powershell"
+      ],
+      "mitre": {
+        "id": [
+          "T1059.001",
+          "T1027"
+        ],
+        "tactic": [
+          "Execution",
+          "Defense Evasion"
+        ]
+      }
+    },
+    "data": {
+      "win": {
+        "eventdata": {
+          "targetUserName": "lukas.gruber"
+        }
+      }
+    }
+  }
+]

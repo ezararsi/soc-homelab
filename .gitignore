@@ -1,0 +1,17 @@
+# Große Lab-Dateien
+*.iso
+*.vdi
+*.vbox-prev
+
+# Geheimnisse - niemals committen
+.env
+*.pem
+*.key
+
+# Python
+__pycache__/
+.venv/
+.pytest_cache/
+
+# Reports aus dem Live-Lab enthalten echte Konten und IPs
+ir-tool/reports/
